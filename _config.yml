@@ -1,0 +1,9 @@
+title: Coming Soon
+description: My portfolio site is under construction
+baseurl: ""
+url: "https://yourusername.github.io"
+
+theme: minima
+
+exclude:
+  - README.md

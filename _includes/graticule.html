@@ -1,0 +1,122 @@
+<!-- Graticule Accent for Header -->
+<div class="graticule-container">
+    <svg class="graticule" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <!-- Populated by JavaScript -->
+    </svg>
+    <div class="coordinates" id="coord-display"></div>
+</div>
+
+<script>
+    // Array of coordinate locations to randomly choose from
+    const coordinateLocations = [
+        { lat: 30.380682683207947, lng: -88.55752120057342 }, // La Pointe-Krebs House
+        { lat: 31.140680167970476, lng: -89.24448534192715 }, // Paul B. Johnson State Park
+        { lat: 24.546622813994833, lng: -81.79748566558126 }, // Key West, Florida
+        { lat: 36.166469236001255, lng: -86.77124634574218 }, // Nashville, TN
+    ];
+
+    // Convert decimal coordinates to DMS format
+    function decimalToDMS(lat, lng) {
+        function convertToDMS(decimal, isLat) {
+            const absolute = Math.abs(decimal);
+            const degrees = Math.floor(absolute);
+            const minutesDecimal = (absolute - degrees) * 60;
+            const minutes = Math.floor(minutesDecimal);
+            const seconds = ((minutesDecimal - minutes) * 60).toFixed(1);
+            
+            let direction;
+            if (isLat) {
+                direction = decimal >= 0 ? 'N' : 'S';
+            } else {
+                direction = decimal >= 0 ? 'E' : 'W';
+            }
+            
+            return `${degrees}°${minutes}'${seconds}"${direction}`;
+        }
+        
+        const latDMS = convertToDMS(lat, true);
+        const lngDMS = convertToDMS(lng, false);
+        
+        return `${latDMS}, ${lngDMS}`;
+    }
+
+    // Generate graticule with random variations
+    function generateGraticule() {
+        const svg = document.querySelector('.graticule');
+        const container = document.querySelector('.graticule-container');
+        
+        if (!svg || !container) return;
+        
+        const width = container.offsetWidth;
+        const height = container.offsetHeight;
+
+        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        
+        // Clear existing lines
+        svg.innerHTML = '';
+
+        // Helper function for random variations
+        function randomBetween(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        // Generate vertical lines
+        let x = -10;
+        const targetRight = width + 10;
+        
+        while (x < targetRight) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x);
+            line.setAttribute('y1', -10);
+            line.setAttribute('x2', x);
+            line.setAttribute('y2', height + 10);
+            line.setAttribute('stroke-width', randomBetween(0.5, 1.5));
+            svg.appendChild(line);
+            
+            x += randomBetween(35, 50);
+        }
+
+        // Generate horizontal lines
+        let y = -10;
+        const targetBottom = height + 10;
+        
+        while (y < targetBottom) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', -10);
+            line.setAttribute('y1', y);
+            line.setAttribute('x2', width + 10);
+            line.setAttribute('y2', y);
+            line.setAttribute('stroke-width', randomBetween(0.5, 1.5));
+            svg.appendChild(line);
+            
+            y += randomBetween(35, 50);
+        }
+
+        // Position coordinates
+        const coordDisplay = document.getElementById('coord-display');
+        if (coordDisplay) {
+            // Randomly select coordinates from the array
+            const randomCoord = coordinateLocations[Math.floor(Math.random() * coordinateLocations.length)];
+            const coordinates = decimalToDMS(randomCoord.lat, randomCoord.lng);
+            coordDisplay.textContent = coordinates;
+            coordDisplay.style.top = '20px';
+            coordDisplay.style.left = '20px';
+            coordDisplay.style.bottom = 'auto';
+            coordDisplay.style.right = 'auto';
+        }
+    }
+
+    // Generate on load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', generateGraticule);
+    } else {
+        generateGraticule();
+    }
+
+    // Regenerate on resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(generateGraticule, 250);
+    });
+</script>

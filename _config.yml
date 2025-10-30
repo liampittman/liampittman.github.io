@@ -1,9 +1,22 @@
-title: Coming Soon
-description: My portfolio site is under construction
-baseurl: ""
-url: "https://yourusername.github.io"
+# Site settings
+title: William Pittman
+email: your-email@example.com
+description: >-
+  Data journalist mapping the systems that shape civic life and making hidden infrastructure visible, accountable.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://liampittman.github.io/" # the base hostname & protocol for your site
+github_username: liampittman
 
-theme: minima
+# Build settings
+markdown: kramdown
+permalink: /:title/
 
+# Exclude from processing
 exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
   - README.md

@@ -35,10 +35,6 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .graticule-container {
-        /* Container spans full viewport on all screen sizes */
-    }
-    
     .coordinates {
         font-size: 7px;
     }

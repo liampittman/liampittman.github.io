@@ -72,7 +72,7 @@ body {
 .container {
   max-width: calc(640px + 5vw);
   margin: 0;
-  padding: 0 var 0;
+  padding: 0;
   padding-left: max(var(--spacing-sm), 5vw);
 }
 
@@ -91,11 +91,11 @@ header {
 }
 
 footer {
-  max-width: var(--content-width);
   padding: var(--spacing-sm) 0 var(--spacing-sm);
   margin-top: var(--spacing-xs);
   font-family: var(--font-mono);
   font-size: 0.875rem;
+  text-align: center;
 }
 
 /* ============================================
@@ -160,6 +160,10 @@ code, .mono {
   color: var(--color-gray-dark);
 }
 
+main p {
+  text-align: justify;
+}
+
 /* ============================================
    HERO SECTION
    ============================================ */
@@ -184,6 +188,7 @@ code, .mono {
   line-height: 1.2;            /* Tighter than body, looser than h1 */
   margin-bottom: 0; 
   text-transform: uppercase;     /* Minimal gap to secondary tagline */
+  text-align-last: justify;
 }
 
 .hero .tagline-secondary {
@@ -193,6 +198,7 @@ code, .mono {
   margin-bottom: 1rem;
   line-height: 1;
   margin-top: 0;
+  text-align-last: justify;
 }
 
 .hero .intro {
@@ -200,6 +206,14 @@ code, .mono {
   font-size: 1.0625rem;
   line-height: var(line-height-body);
   margin-top: 0;
+}
+
+.bio-photo {
+  float: right;
+  width: 200px;  /* Adjust size as needed */
+  margin-left: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+  border: 2px solid var(--color-border);
 }
 
 /* ============================================
@@ -373,7 +387,6 @@ code, .mono {
   font-weight: bold;
   border: 2px solid #666666;
   padding: 0.5rem;
-  font-aling
 }
 
 .data-table .mono {
@@ -401,27 +414,35 @@ nav a {
 
 }
 
-footer {
-  padding: var(--spacing-sm) 0 var(--spacing-sm);
-  font-size: 0.875rem;
-  color: var(--color-gray-dark);
-  text-align: center;
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+   justify-content: center;
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  font-weight: bold;
 }
 
-footer a {
-  color: var(--color-gray-dark);
+.contact-line h3 {
+  margin: 0;
+  display: inline;
 }
 
-footer a:hover {
+.contact-line a {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);  
+}
+
+.contact-line a:hover {
   color: var(--color-accent);
 }
 
-.footer-links {
-  display: flex;
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-sm);
-  margin-left: max(var(--spacing-sm), 5vw);
-  font-weight: bold;
+footer hr {
+  margin-left: 0;  /* Override the global hr margin */
 }
 
 /* ============================================
@@ -478,4 +499,30 @@ footer a:hover {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.citation-block {
+  font-size: 0.9rem;
+  color: var(--color-gray-dark);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding-left: 2rem;  /* This is the indent amount */
+  text-indent: -2rem;  /* This pulls the first line back */
+  line-height: 1.4;
+}
+
+.series-intro {
+  border: 2px outset var(--color-border);
+  padding: var(--spacing-md);
+  background: #ffffff;
+  box-shadow: 4px 4px 0 0 #000000;
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.9rem;
+}
+
+.netscape-logo {
+  height: 1.5em;  /* Scales with text size */
+  vertical-align: middle;
+  margin: 0 0.25em;
+  image-rendering: pixelated;  /* Keeps it crisp and retro */
 }

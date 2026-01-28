@@ -1,6 +1,6 @@
 <!-- Graticule Accent for Header -->
 <div class="graticule-container">
-    <svg class="graticule" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <svg class="graticule" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="none">
         <!-- Populated by JavaScript -->
     </svg>
     <div class="coordinates" id="coord-display"></div>
@@ -65,7 +65,7 @@
         const targetRight = width + 10;
         
         while (x < targetRight) {
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            const line = document.createElementNS('https://www.w3.org/2000/svg', 'line');
             line.setAttribute('x1', x);
             line.setAttribute('y1', -10);
             line.setAttribute('x2', x);
@@ -81,7 +81,7 @@
         const targetBottom = height + 10;
         
         while (y < targetBottom) {
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            const line = document.createElementNS('https://www.w3.org/2000/svg', 'line');
             line.setAttribute('x1', -10);
             line.setAttribute('y1', y);
             line.setAttribute('x2', width + 10);
